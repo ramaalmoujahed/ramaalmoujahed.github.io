@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rama Almoujahed — Power BI & Data Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:    #0D1B2A;
+  --navy-2:  #1B2F45;
+  --navy-3:  #243B55;
+  --teal:    #0E9AA7;
+  --teal-2:  #0C8A96;
+  --gold:    #F4A435;
+  --white:   #FFFFFF;
+  --off:     #F5F7FA;
+  --border:  #DDE3EC;
+  --muted:   #6B7A8D;
+  --ink:     #1A2332;
+  --card-bg: #FFFFFF;
+  --sans:    'Plus Jakarta Sans', system-ui, sans-serif;
+  --mono:    'JetBrains Mono', monospace;
+  --shadow-sm: 0 1px 3px rgba(13,27,42,0.06), 0 1px 2px rgba(13,27,42,0.04);
+  --shadow-md: 0 4px 12px rgba(13,27,42,0.08), 0 2px 4px rgba(13,27,42,0.04);
+  --shadow-lg: 0 12px 32px rgba(13,27,42,0.12), 0 4px 8px rgba(13,27,42,0.06);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { background: var(--off); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--teal); color: #fff; }
+img { display: block; max-width: 100%; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--off); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── Utility ── */
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(13, 27, 42, 0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+nav .wrap {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 68px;
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 12px;
+}
+.nav-initials {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--teal), var(--teal-2));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 14px; color: #fff; letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+.nav-name {
+  font-weight: 700; font-size: 15px; color: #fff; letter-spacing: -0.01em;
+}
+.nav-sub {
+  font-size: 11.5px; color: rgba(255,255,255,0.45); font-weight: 400;
+  margin-top: 1px;
+}
+.navlinks {
+  display: flex; gap: 4px;
+}
+.navlinks a {
+  font-size: 13.5px; font-weight: 500; color: rgba(255,255,255,0.6);
+  padding: 7px 14px; border-radius: 8px;
+  transition: color 0.15s, background 0.15s;
+}
+.navlinks a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+.navlinks a.active { color: #fff; background: rgba(14,154,167,0.2); }
+.nav-cta {
+  font-size: 13px; font-weight: 600;
+  background: var(--teal); color: #fff;
+  padding: 8px 18px; border-radius: 8px;
+  border: none; cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.nav-cta:hover { background: var(--teal-2); transform: translateY(-1px); }
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-3) 60%, #1a3a50 100%);
+  padding: 148px 0 96px;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(14,154,167,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(14,154,167,0.4), transparent);
+}
+.hero-grid {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 64px; align-items: center; position: relative; z-index: 1;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(14,154,167,0.15); border: 1px solid rgba(14,154,167,0.3);
+  color: var(--teal); font-size: 12px; font-weight: 600;
+  padding: 5px 12px; border-radius: 20px; margin-bottom: 20px;
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+.hero-badge::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--teal); animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.75); }
+}
+.hero h1 {
+  font-size: clamp(38px, 5vw, 58px); font-weight: 800;
+  line-height: 1.08; letter-spacing: -0.025em; color: #fff;
+  margin-bottom: 16px;
+}
+.hero h1 .highlight {
+  background: linear-gradient(90deg, var(--teal), #5dd6e0);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-role {
+  font-size: 16px; font-weight: 500;
+  color: rgba(255,255,255,0.55); margin-bottom: 24px;
+}
+.hero-role span { color: rgba(255,255,255,0.25); margin: 0 8px; }
+.hero-bio {
+  font-size: 16.5px; color: rgba(255,255,255,0.7);
+  max-width: 52ch; line-height: 1.7; margin-bottom: 36px;
+}
+.hero-stats {
+  display: flex; gap: 32px; margin-bottom: 40px;
+}
+.hero-stat-val {
+  font-size: 26px; font-weight: 800; color: #fff; letter-spacing: -0.02em;
+}
+.hero-stat-val em { color: var(--teal); font-style: normal; }
+.hero-stat-label {
+  font-size: 12px; color: rgba(255,255,255,0.45); font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px;
+}
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--teal); color: #fff; font-weight: 700; font-size: 14.5px;
+  padding: 13px 26px; border-radius: 10px; border: none; cursor: pointer;
+  transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+  box-shadow: 0 4px 16px rgba(14,154,167,0.35);
+}
+.btn-primary:hover { background: var(--teal-2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(14,154,167,0.4); }
+.btn-secondary {
+  background: rgba(255,255,255,0.08); color: #fff; font-weight: 600; font-size: 14.5px;
+  padding: 13px 26px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15);
+  cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.28); transform: translateY(-1px); }
+
+/* Photo */
+.hero-photo-wrap { flex-shrink: 0; text-align: center; }
+.hero-photo-ring {
+  width: 200px; height: 200px; border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(135deg, var(--teal), var(--gold));
+  box-shadow: var(--shadow-lg), 0 0 40px rgba(14,154,167,0.25);
+}
+.hero-photo-inner {
+  width: 100%; height: 100%; border-radius: 50%; overflow: hidden;
+  background: var(--navy-2); border: 3px solid var(--navy);
+}
+.hero-photo-inner img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.hero-available {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--navy); border: 1px solid rgba(14,154,167,0.3);
+  border-radius: 20px; padding: 7px 16px; margin-top: 14px;
+  font-size: 12px; font-weight: 600; color: #4ade80;
+  box-shadow: var(--shadow-md); width: fit-content; margin-left: auto; margin-right: auto;
+}
+.hero-available::before {
+  content: ''; width: 7px; height: 7px; border-radius: 50%; background: #4ade80;
+  animation: pulse-dot 2s infinite; flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════
+   SECTION SHARED
+══════════════════════════════════════ */
+.section { padding: 88px 0; }
+.section-alt { background: var(--white); }
+.section-dark { background: var(--navy); }
+.section-header { margin-bottom: 48px; }
+.section-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 12px; font-weight: 500;
+  color: var(--teal); letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.section-eyebrow::before {
+  content: ''; width: 20px; height: 2px; background: var(--teal); border-radius: 1px;
+}
+.section-title {
+  font-size: clamp(26px, 3.5vw, 38px); font-weight: 800;
+  letter-spacing: -0.02em; line-height: 1.1;
+}
+.section-title-dark { color: #fff; }
+.section-subtitle {
+  font-size: 16px; color: var(--muted); margin-top: 10px; max-width: 56ch;
+}
+.section-subtitle-dark { color: rgba(255,255,255,0.5); }
+
+/* ══════════════════════════════════════
+   PROJECTS
+══════════════════════════════════════ */
+.projects-grid {
+  display: flex; flex-direction: column; gap: 28px;
+}
+.project-card {
+  background: var(--card-bg); border-radius: 16px; overflow: hidden;
+  border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+}
+.project-card:hover {
+  box-shadow: var(--shadow-lg); transform: translateY(-2px); border-color: #c4d0e0;
+}
+.project-card-inner { display: grid; grid-template-columns: 1fr 1fr; }
+.project-card-inner.single-shot { grid-template-columns: 5fr 4fr; }
+
+.project-visuals {
+  background: var(--navy); position: relative; overflow: hidden; min-height: 280px;
+}
+.project-visuals-grid {
+  display: grid; gap: 2px; width: 100%; height: 100%;
+}
+.project-visuals-grid.g-3 { grid-template-columns: 1fr 1fr 1fr; }
+.project-visuals-grid.g-4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+.project-visuals-grid.g-1 { grid-template-columns: 1fr; }
+.project-visuals-grid a {
+  display: block; overflow: hidden; position: relative;
+}
+.project-visuals-grid img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.4s ease; filter: brightness(0.92);
+}
+.project-visuals-grid a:hover img { transform: scale(1.06); filter: brightness(1); }
+.project-vis-overlay {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to right, rgba(13,27,42,0.2), transparent);
+}
+
+.project-content { padding: 36px 40px; display: flex; flex-direction: column; justify-content: center; }
+.project-num {
+  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  color: var(--teal); letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+}
+.project-num::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+.project-title {
+  font-size: 22px; font-weight: 800; letter-spacing: -0.02em;
+  color: var(--ink); line-height: 1.2; margin-bottom: 8px;
+}
+.project-stat {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: linear-gradient(135deg, rgba(14,154,167,0.08), rgba(14,154,167,0.04));
+  border: 1px solid rgba(14,154,167,0.2);
+  border-radius: 6px; padding: 6px 12px; margin-bottom: 16px;
+  font-size: 12.5px; font-weight: 700; color: var(--teal);
+  font-family: var(--mono);
+}
+.project-stat::before { content: '◆'; font-size: 8px; }
+.project-desc {
+  font-size: 14.5px; color: var(--muted); line-height: 1.7;
+  margin-bottom: 24px;
+}
+.project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.project-tag {
+  font-size: 12px; font-weight: 600; padding: 5px 11px; border-radius: 6px;
+  background: var(--off); color: var(--navy-2); border: 1px solid var(--border);
+  letter-spacing: 0.01em;
+}
+.project-tag.accent { background: rgba(14,154,167,0.08); color: var(--teal); border-color: rgba(14,154,167,0.2); }
+
+/* Alternating layout */
+.project-card:nth-child(even) .project-card-inner {
+  direction: rtl;
+}
+.project-card:nth-child(even) .project-card-inner > * {
+  direction: ltr;
+}
+
+/* ══════════════════════════════════════
+   SKILLS
+══════════════════════════════════════ */
+.skills-layout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.skill-category-title {
+  font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.4);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  margin-bottom: 20px; font-family: var(--mono);
+}
+.skill-bars { display: flex; flex-direction: column; gap: 16px; }
+.skill-row { }
+.skill-row-top {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 7px;
+}
+.skill-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); }
+.skill-pct { font-size: 12px; font-weight: 500; color: var(--teal); font-family: var(--mono); }
+.skill-bar-bg {
+  height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden;
+}
+.skill-bar-fill {
+  height: 100%; border-radius: 3px;
+  background: linear-gradient(90deg, var(--teal), #5dd6e0);
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0;
+}
+.skill-bar-fill.animate { }
+
+.tool-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.tool-chip {
+  font-size: 13px; font-weight: 500; padding: 8px 14px;
+  border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.7);
+  transition: all 0.15s;
+}
+.tool-chip:hover {
+  background: rgba(14,154,167,0.15); border-color: rgba(14,154,167,0.3);
+  color: #fff;
+}
+
+/* ══════════════════════════════════════
+   EXPERIENCE / EDUCATION TABS
+══════════════════════════════════════ */
+.tab-nav {
+  display: flex; gap: 0; margin-bottom: 40px;
+  border-bottom: 2px solid var(--border);
+}
+.tab-btn {
+  font-size: 14.5px; font-weight: 700; padding: 12px 28px;
+  background: none; border: none; cursor: pointer;
+  color: var(--muted); border-bottom: 3px solid transparent;
+  margin-bottom: -2px; transition: all 0.2s;
+  letter-spacing: -0.01em;
+}
+.tab-btn:hover { color: var(--ink); }
+.tab-btn.active { color: var(--teal); border-bottom-color: var(--teal); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.timeline { position: relative; }
+.timeline::before {
+  content: ''; position: absolute; left: 14px; top: 6px; bottom: 6px;
+  width: 2px; background: linear-gradient(to bottom, var(--teal), var(--border));
+  border-radius: 1px;
+}
+.tl-item {
+  display: grid; grid-template-columns: 56px 1fr;
+  gap: 24px; padding: 0 0 36px;
+}
+.tl-item:last-child { padding-bottom: 0; }
+.tl-dot {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: #fff; border: 3px solid var(--teal);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+  box-shadow: 0 0 0 4px rgba(14,154,167,0.1);
+  z-index: 1; position: relative;
+}
+.tl-dot-inner {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--teal);
+}
+.tl-content { }
+.tl-period {
+  font-family: var(--mono); font-size: 11.5px; color: var(--teal);
+  font-weight: 500; letter-spacing: 0.04em; margin-bottom: 6px;
+}
+.tl-role { font-size: 16.5px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+.tl-org { color: var(--teal); font-weight: 600; }
+.tl-desc {
+  margin-top: 8px; font-size: 14.5px; color: var(--muted); line-height: 1.7;
+  max-width: 56ch;
+}
+
+/* ══════════════════════════════════════
+   CERTIFICATIONS
+══════════════════════════════════════ */
+.cert-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px;
+}
+.cert-card {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px; padding: 20px 22px;
+  transition: background 0.15s, border-color 0.15s;
+}
+.cert-card:hover {
+  background: rgba(14,154,167,0.08); border-color: rgba(14,154,167,0.25);
+}
+.cert-issuer {
+  font-size: 11px; font-weight: 600; color: var(--teal);
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px;
+  font-family: var(--mono);
+}
+.cert-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); }
+.cert-year { font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 4px; font-family: var(--mono); }
+
+/* ══════════════════════════════════════
+   CONTACT
+══════════════════════════════════════ */
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+}
+.contact-intro {
+  font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 32px;
+}
+.contact-links { display: flex; flex-direction: column; gap: 14px; }
+.contact-link {
+  display: flex; align-items: center; gap: 16px;
+  padding: 16px 20px; border-radius: 12px;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  transition: all 0.2s;
+}
+.contact-link:hover {
+  background: rgba(14,154,167,0.1); border-color: rgba(14,154,167,0.3);
+  transform: translateX(4px);
+}
+.contact-link-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: rgba(14,154,167,0.15); border: 1px solid rgba(14,154,167,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.contact-link-label {
+  font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.35);
+  text-transform: uppercase; letter-spacing: 0.08em; font-family: var(--mono);
+}
+.contact-link-value { font-size: 14.5px; font-weight: 600; color: rgba(255,255,255,0.85); margin-top: 1px; }
+.contact-link-value a:hover { color: var(--teal); }
+
+.contact-form-col { }
+.contact-form { display: flex; flex-direction: column; gap: 14px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-label {
+  font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.45);
+  text-transform: uppercase; letter-spacing: 0.06em; font-family: var(--mono);
+}
+.form-input, .form-textarea {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px; padding: 13px 16px;
+  font-family: var(--sans); font-size: 14px; color: rgba(255,255,255,0.85);
+  transition: border-color 0.2s, background 0.2s; resize: vertical;
+}
+.form-input:focus, .form-textarea:focus {
+  outline: none; border-color: var(--teal); background: rgba(14,154,167,0.06);
+}
+.form-textarea { min-height: 120px; }
+.form-submit {
+  background: var(--teal); color: #fff; font-family: var(--sans);
+  font-size: 14.5px; font-weight: 700; padding: 14px 28px;
+  border: none; border-radius: 10px; cursor: pointer;
+  transition: all 0.2s; align-self: flex-start;
+  box-shadow: 0 4px 16px rgba(14,154,167,0.3);
+}
+.form-submit:hover { background: var(--teal-2); transform: translateY(-2px); }
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer {
+  background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 32px 0; text-align: center;
+  font-size: 13px; color: rgba(255,255,255,0.25);
+  font-family: var(--mono);
+}
+footer span { color: rgba(14,154,167,0.7); }
+
+/* ══════════════════════════════════════
+   SCROLL ANIMATIONS
+══════════════════════════════════════ */
+.fade-up {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 900px) {
+  .project-card-inner { grid-template-columns: 1fr; }
+  .project-card:nth-child(even) .project-card-inner { direction: ltr; }
+  .project-visuals { min-height: 220px; }
+  .skills-layout { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .wrap { padding: 0 20px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-photo-ring { width: 140px; height: 140px; }
+  .hero-stats { gap: 20px; }
+  .navlinks { display: none; }
+  .hero { padding: 120px 0 72px; }
+  .section { padding: 64px 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .fade-up { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="wrap">
+    <div class="nav-brand">
+      <div class="nav-initials">RA</div>
+      <div>
+        <div class="nav-name">Rama Almoujahed</div>
+        <div class="nav-sub">Power BI Specialist</div>
+      </div>
+    </div>
+    <div class="navlinks">
+      <a href="#projects">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Background</a>
+      <a href="#certifications">Certs</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="nav-cta" href="mailto:ranma.almoujahed@gmail.com">Hire Me</a>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-badge">Available for Werkstudent roles</div>
+        <h1>Power BI <span class="highlight">Data Specialist</span> &amp; BI Consultant</h1>
+        <div class="hero-role">
+          M.Sc. Business Informatics
+          <span>/</span>
+          DAX · Power Query · SQL Server
+        </div>
+        <p class="hero-bio">
+          I design Power BI dashboards that transform raw operational data into decisions — from banking KPIs to financial forecasting. Currently completing an M.Sc. in Business Informatics in Hagen, Germany, with 1+ year of hands-on BI experience in the banking sector.
+        </p>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-val">5<em>+</em></div>
+            <div class="hero-stat-label">Projects Delivered</div>
+          </div>
+          <div>
+            <div class="hero-stat-val">1<em>yr</em></div>
+            <div class="hero-stat-label">Banking BI Experience</div>
+          </div>
+          <div>
+            <div class="hero-stat-val">8<em>+</em></div>
+            <div class="hero-stat-label">Certifications</div>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#projects">View Case Studies ↓</a>
+          <a class="btn-secondary" href="#contact">Get in Touch</a>
+        </div>
+      </div>
+      <div class="hero-photo-wrap">
+        <div class="hero-photo-ring">
+          <div class="hero-photo-inner">
+            <img src="screenshots/profile_1.jpg" alt="Rama Almoujahed">
+          </div>
+        </div>
+        <div class="hero-available">Open to Work</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROJECTS ══ -->
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="section-header fade-up">
+      <div class="section-eyebrow">Case Studies</div>
+      <h2 class="section-title">Selected Work</h2>
+      <p class="section-subtitle">Five Power BI projects spanning HR analytics, banking, financial forecasting, disaster mapping, and survey analysis.</p>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- 1: HR -->
+      <div class="project-card fade-up">
+        <div class="project-card-inner">
+          <div class="project-visuals">
+            <div class="project-visuals-grid g-3">
+              <a href="screenshots/hr-01-salary-employees.png" target="_blank" rel="noopener"><img src="screenshots/hr-01-salary-employees.png" alt="Salary and Employees report"></a>
+              <a href="screenshots/hr-03-averages.png" target="_blank" rel="noopener"><img src="screenshots/hr-03-averages.png" alt="Averages report"></a>
+              <a href="screenshots/hr-05-business-unit.png" target="_blank" rel="noopener"><img src="screenshots/hr-05-business-unit.png" alt="Business Unit report"></a>
+            </div>
+            <div class="project-vis-overlay"></div>
+          </div>
+          <div class="project-content">
+            <div class="project-num">01 — Human Resources</div>
+            <h3 class="project-title">Human Resources Analysis</h3>
+            <div class="project-stat">3,500+ employee records · 3 pages</div>
+            <p class="project-desc">Workforce dashboard built around a dynamic measure-switcher (disconnected parameter table) letting KPI cards toggle between total and average views of salary, headcount, sick days, and leave balance. Includes a Business Unit / Region page with YoY salary trend and a Gender × Job Classification pivot.</p>
+            <div class="project-tags">
+              <span class="project-tag accent">Power BI</span>
+              <span class="project-tag accent">DAX</span>
+              <span class="project-tag">Data Modeling</span>
+              <span class="project-tag">Star Schema</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2: Bank of America -->
+      <div class="project-card fade-up">
+        <div class="project-card-inner">
+          <div class="project-visuals">
+            <div class="project-visuals-grid g-3">
+              <a href="screenshots/boa-01-demographics.png" target="_blank" rel="noopener"><img src="screenshots/boa-01-demographics.png" alt="Customer demographics"></a>
+              <a href="screenshots/boa-02-age-balance.png" target="_blank" rel="noopener"><img src="screenshots/boa-02-age-balance.png" alt="Age and balance distribution"></a>
+              <a href="screenshots/boa-03-balance-breakdown.png" target="_blank" rel="noopener"><img src="screenshots/boa-03-balance-breakdown.png" alt="Balance breakdown"></a>
+            </div>
+            <div class="project-vis-overlay"></div>
+          </div>
+          <div class="project-content">
+            <div class="project-num">02 — Banking Analytics</div>
+            <h3 class="project-title">Bank of America Customer Analysis</h3>
+            <div class="project-stat">~4,000 customers · 4 report pages</div>
+            <p class="project-desc">Customer segmentation dashboard across geography, demographics, and account balances. Includes a US state map, age/balance histograms, a scatter comparison across balance thresholds, and a dynamic measure-switcher page with monthly balance trends and a quarter-over-quarter pivot breakdown.</p>
+            <div class="project-tags">
+              <span class="project-tag accent">Power BI</span>
+              <span class="project-tag accent">DAX</span>
+              <span class="project-tag">Geo Mapping</span>
+              <span class="project-tag">Segmentation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3: Financials -->
+      <div class="project-card fade-up">
+        <div class="project-card-inner">
+          <div class="project-visuals">
+            <div class="project-visuals-grid g-4">
+              <a href="screenshots/fin-01-forecast.png" target="_blank" rel="noopener"><img src="screenshots/fin-01-forecast.png" alt="Sales forecast with confidence band"></a>
+              <a href="screenshots/fin-02-overview.png" target="_blank" rel="noopener"><img src="screenshots/fin-02-overview.png" alt="Sales overview by country and segment"></a>
+              <a href="screenshots/fin-03-geo-trend.png" target="_blank" rel="noopener"><img src="screenshots/fin-03-geo-trend.png" alt="Geographic bubble map with trend"></a>
+              <a href="screenshots/fin-04-kpi-strip.png" target="_blank" rel="noopener"><img src="screenshots/fin-04-kpi-strip.png" alt="KPI strip with sparklines"></a>
+            </div>
+            <div class="project-vis-overlay"></div>
+          </div>
+          <div class="project-content">
+            <div class="project-num">03 — Financial Reporting</div>
+            <h3 class="project-title">Financial Performance & Forecasting</h3>
+            <div class="project-stat">$118M+ in sales · 5 countries · 4 pages</div>
+            <p class="project-desc">Financial report combining historical sales, margin, and COGS analysis with a forward-looking forecast band. Includes a sales-weighted bubble map, a dynamic measure-switcher page (Sales / COGS / Margin), and a custom tooltip page showing trend sparklines on hover — a technique beyond basic Power BI.</p>
+            <div class="project-tags">
+              <span class="project-tag accent">Power BI</span>
+              <span class="project-tag accent">DAX</span>
+              <span class="project-tag">Forecasting</span>
+              <span class="project-tag">Custom Tooltips</span>
+              <span class="project-tag">Geo Mapping</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4: Natural Disasters -->
+      <div class="project-card fade-up">
+        <div class="project-card-inner">
+          <div class="project-visuals">
+            <div class="project-visuals-grid g-3">
+              <a href="screenshots/disaster-01-map.png" target="_blank" rel="noopener"><img src="screenshots/disaster-01-map.png" alt="US shape map by disaster type"></a>
+              <a href="screenshots/disaster-02-state-detail.png" target="_blank" rel="noopener"><img src="screenshots/disaster-02-state-detail.png" alt="Deaths and losses by state"></a>
+              <a href="screenshots/disaster-03-summary-table.png" target="_blank" rel="noopener"><img src="screenshots/disaster-03-summary-table.png" alt="Summary table with pie chart"></a>
+            </div>
+            <div class="project-vis-overlay"></div>
+          </div>
+          <div class="project-content">
+            <div class="project-num">04 — Geospatial Analytics</div>
+            <h3 class="project-title">US Natural Disasters Analysis</h3>
+            <div class="project-stat">337 deaths · $301B+ losses tracked · 50 states</div>
+            <p class="project-desc">2017 US natural disaster report analyzing hurricanes, wildfires, floods, drought, and freeze events. Built a custom image-based chiclet slicer so users filter by disaster type using real photos — a polished UX touch paired with a US shape map colored by disaster type and narrative incident summaries per state.</p>
+            <div class="project-tags">
+              <span class="project-tag accent">Power BI</span>
+              <span class="project-tag accent">Shape Map</span>
+              <span class="project-tag">Custom Visuals</span>
+              <span class="project-tag">Chiclet Slicer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5: Productivity -->
+      <div class="project-card fade-up">
+        <div class="project-card-inner single-shot">
+          <div class="project-visuals">
+            <div class="project-visuals-grid g-1">
+              <a href="screenshots/productivity-01-survey.png" target="_blank" rel="noopener"><img src="screenshots/productivity-01-survey.png" alt="Productivity survey dashboard"></a>
+            </div>
+            <div class="project-vis-overlay"></div>
+          </div>
+          <div class="project-content">
+            <div class="project-num">05 — Survey Analytics</div>
+            <h3 class="project-title">Productivity Survey Analysis</h3>
+            <div class="project-stat">1,223 survey respondents · age-group filtered</div>
+            <p class="project-desc">Survey-response dashboard analyzing workplace productivity data from 1,223 respondents. Breaks down self-reported blockers (distractions, interruptions, time management, technology access) against perceived overall productivity and what respondents find helpful, with an age-group slicer driving every visual simultaneously.</p>
+            <div class="project-tags">
+              <span class="project-tag accent">Power BI</span>
+              <span class="project-tag accent">Survey Analytics</span>
+              <span class="project-tag">DAX</span>
+              <span class="project-tag">UX Design</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SKILLS ══ -->
+<section class="section section-dark" id="skills">
+  <div class="wrap">
+    <div class="section-header fade-up">
+      <div class="section-eyebrow">Capabilities</div>
+      <h2 class="section-title section-title-dark">Skills & Tools</h2>
+      <p class="section-subtitle section-subtitle-dark">Core BI stack and supporting technologies.</p>
+    </div>
+    <div class="skills-layout">
+      <div class="fade-up">
+        <div class="skill-category-title">Core BI Stack</div>
+        <div class="skill-bars">
+          <div class="skill-row">
+            <div class="skill-row-top"><span class="skill-name">Power BI Desktop & Service</span><span class="skill-pct">95%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="95"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-row-top"><span class="skill-name">DAX</span><span class="skill-pct">90%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="90"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-row-top"><span class="skill-name">Power Query (M)</span><span class="skill-pct">88%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="88"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-row-top"><span class="skill-name">Data Modeling / Star Schema</span><span class="skill-pct">85%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="85"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-row-top"><span class="skill-name">SQL Server & T-SQL</span><span class="skill-pct">80%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="80"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up">
+        <div class="skill-category-title">Supporting Tools</div>
+        <div class="tool-chips">
+          <span class="tool-chip">Excel (Advanced)</span>
+          <span class="tool-chip">Tableau</span>
+          <span class="tool-chip">Google BigQuery</span>
+          <span class="tool-chip">Python</span>
+          <span class="tool-chip">R</span>
+          <span class="tool-chip">Row-Level Security</span>
+          <span class="tool-chip">On-Premises Gateway</span>
+          <span class="tool-chip">GitHub</span>
+          <span class="tool-chip">VS Code</span>
+          <span class="tool-chip">ETL Pipelines</span>
+          <span class="tool-chip">SAP Leonardo</span>
+          <span class="tool-chip">Microsoft 365</span>
+        </div>
+        <div class="skill-category-title" style="margin-top:32px;">Languages</div>
+        <div class="tool-chips">
+          <span class="tool-chip">Arabic — Native (C2)</span>
+          <span class="tool-chip">English — B2 (IELTS 6.5)</span>
+          <span class="tool-chip">German — A2</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EXPERIENCE / EDUCATION ══ -->
+<section class="section section-alt" id="experience">
+  <div class="wrap">
+    <div class="section-header fade-up">
+      <div class="section-eyebrow">Background</div>
+      <h2 class="section-title">Experience & Education</h2>
+    </div>
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="showTab('exp')" id="tab-exp">Experience</button>
+      <button class="tab-btn" onclick="showTab('edu')" id="tab-edu">Education</button>
+    </div>
+    <div class="tab-panel active" id="panel-exp">
+      <div class="timeline">
+        <div class="tl-item fade-up">
+          <div><div class="tl-dot"><div class="tl-dot-inner"></div></div></div>
+          <div class="tl-content">
+            <div class="tl-period">Jan 2025 — Mar 2026 · Full Time</div>
+            <div class="tl-role">Data Analyst · <span class="tl-org">AL Baraka Bank, Syria</span></div>
+            <p class="tl-desc">Built Power BI dashboards for branch performance, transaction volumes, and digital service usage — giving management a single real-time view of operational KPIs. Developed a star-schema data model with reusable DAX measures (time intelligence, YoY, running totals) and connected Microsoft SQL Server via Power Query and an on-premises data gateway to automate scheduled refreshes.</p>
+          </div>
+        </div>
+        <div class="tl-item fade-up">
+          <div><div class="tl-dot"><div class="tl-dot-inner"></div></div></div>
+          <div class="tl-content">
+            <div class="tl-period">Jun 2024 — Aug 2024 · Internship</div>
+            <div class="tl-role">Banking Student Intern · <span class="tl-org">AL Baraka Bank, Syria</span></div>
+            <p class="tl-desc">Supported the retail banking and operations teams with daily transaction processing, account data management, and customer inquiries. Gained practical exposure to core banking workflows and the importance of data accuracy in regulated environments.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-panel" id="panel-edu">
+      <div class="timeline">
+        <div class="tl-item fade-up">
+          <div><div class="tl-dot"><div class="tl-dot-inner"></div></div></div>
+          <div class="tl-content">
+            <div class="tl-period">Apr 2026 — Sep 2027 · In Progress</div>
+            <div class="tl-role">M.Sc. Informatics & Business · <span class="tl-org">FH Südwestfalen, Hagen</span></div>
+            <p class="tl-desc">Relevant coursework: Cross-Culture Management & Business Ethics, ERP Systems Internship, Machine Learning, Smart Factories: SAP Leonardo for Industry 4.0.</p>
+          </div>
+        </div>
+        <div class="tl-item fade-up">
+          <div><div class="tl-dot"><div class="tl-dot-inner"></div></div></div>
+          <div class="tl-content">
+            <div class="tl-period">Oct 2020 — Oct 2024</div>
+            <div class="tl-role">B.Sc. Management Information Technology · <span class="tl-org">Arab International University</span></div>
+            <p class="tl-desc">Thesis: InSync — a web-based conflict resolution platform. Graduated with 86.6%, ranked 5th in cohort.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CERTIFICATIONS ══ -->
+<section class="section section-dark" id="certifications">
+  <div class="wrap">
+    <div class="section-header fade-up">
+      <div class="section-eyebrow">Credentials</div>
+      <h2 class="section-title section-title-dark">Certifications</h2>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card fade-up">
+        <div class="cert-issuer">Self / Professional</div>
+        <div class="cert-name">Power BI Advanced</div>
+        <div class="cert-year">2025</div>
+      </div>
+      <div class="cert-card fade-up">
+        <div class="cert-issuer">Google</div>
+        <div class="cert-name">Google Data Analytics</div>
+        <div class="cert-year">2024</div>
+      </div>
+      <div class="cert-card fade-up">
+        <div class="cert-issuer">Google</div>
+        <div class="cert-name">Data Analysis with R Programming</div>
+        <div class="cert-year">2024</div>
+      </div>
+      <div class="cert-card fade-up">
+        <div class="cert-issuer">Google</div>
+        <div class="cert-name">Share Data Through the Art of Visualization</div>
+        <div class="cert-year">2024</div>
+      </div>
+      <div class="cert-card fade-up">
+        <div class="cert-issuer">Google</div>
+        <div class="cert-name">Process Data from Dirty to Clean</div>
+        <div class="cert-year">2024</div>
+      </div>
+      <div class="cert-card fade-up">
+        <div class="cert-issuer">Google</div>
+        <div class="cert-name">Ask Questions to Make Data-Driven Decisions</div>
+        <div class="cert-year">2024</div>
+      </div>
+      <div class="cert-card fade-up">
+        <div class="cert-issuer">AL Baraka Bank</div>
+        <div class="cert-name">Data Analyst Certification</div>
+        <div class="cert-year">2026</div>
+      </div>
+      <div class="cert-card fade-up">
+        <div class="cert-issuer">IDP Education</div>
+        <div class="cert-name">IELTS Academic — B2 (6.5)</div>
+        <div class="cert-year">2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section class="section section-dark" id="contact">
+  <div class="wrap">
+    <div class="section-header fade-up">
+      <div class="section-eyebrow">Get in Touch</div>
+      <h2 class="section-title section-title-dark">Let's Work Together</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="fade-up">
+        <p class="contact-intro">
+          I'm actively looking for Werkstudent or junior data analyst roles in Germany where I can apply my Power BI and data modeling skills. Open to remote or Hagen-area positions.
+        </p>
+        <div class="contact-links">
+          <div class="contact-link">
+            <div class="contact-link-icon">✉</div>
+            <div>
+              <div class="contact-link-label">Email</div>
+              <div class="contact-link-value"><a href="mailto:ranma.almoujahed@gmail.com">ranma.almoujahed@gmail.com</a></div>
+            </div>
+          </div>
+          <div class="contact-link">
+            <div class="contact-link-icon">💼</div>
+            <div>
+              <div class="contact-link-label">LinkedIn</div>
+              <div class="contact-link-value"><a href="https://linkedin.com/in/ramaalmoujahed" target="_blank" rel="noopener">linkedin.com/in/ramaalmoujahed</a></div>
+            </div>
+          </div>
+          <div class="contact-link">
+            <div class="contact-link-icon">⌥</div>
+            <div>
+              <div class="contact-link-label">GitHub</div>
+              <div class="contact-link-value"><a href="https://github.com/ramaalmoujahed" target="_blank" rel="noopener">github.com/ramaalmoujahed</a></div>
+            </div>
+          </div>
+          <div class="contact-link">
+            <div class="contact-link-icon">📍</div>
+            <div>
+              <div class="contact-link-label">Location</div>
+              <div class="contact-link-value">Hagen, Germany</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-col fade-up">
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-input" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" placeholder="your@email.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subject</label>
+            <input type="text" class="form-input" placeholder="Werkstudent opportunity / Collaboration / ...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea class="form-textarea" placeholder="Tell me about the role or project..." required></textarea>
+          </div>
+          <button type="submit" class="form-submit" id="submit-btn">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    © 2026 <span>Rama Almoujahed</span> · Power BI Specialist · Hagen, Germany
+  </div>
+</footer>
+
+<script>
+/* ── Tab switching ── */
+function showTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    b.classList.remove('active');
+    b.setAttribute('aria-selected', 'false');
+  });
+  document.getElementById('panel-' + name).classList.add('active');
+  const btn = document.getElementById('tab-' + name);
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected', 'true');
+}
+
+/* ── Scroll animations ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+        // Animate skill bars
+        entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+      }, i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+/* ── Active nav link on scroll ── */
+const sections = document.querySelectorAll('section[id], div[id="top"]');
+const navLinks = document.querySelectorAll('.navlinks a');
+const scrollSpy = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const active = document.querySelector(`.navlinks a[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { threshold: 0.35 });
+document.querySelectorAll('section[id]').forEach(s => scrollSpy.observe(s));
+
+/* ── Contact form ── */
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  const form = e.target;
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  // Build mailto as fallback since there's no backend
+  const name = form.querySelector('input[type=text]').value;
+  const email = form.querySelector('input[type=email]').value;
+  const subject = form.querySelectorAll('input[type=text]')[1]?.value || 'Portfolio Inquiry';
+  const msg = form.querySelector('textarea').value;
+  const mailto = `mailto:ranma.almoujahed@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\n${msg}`)}`;
+  setTimeout(() => {
+    window.location.href = mailto;
+    btn.textContent = 'Message Sent ✓';
+    btn.style.background = '#22c55e';
+    setTimeout(() => {
+      btn.textContent = 'Send Message →';
+      btn.style.background = '';
+      btn.disabled = false;
+    }, 3000);
+  }, 600);
+}
+</script>
+</body>
+</html>
