@@ -268,6 +268,31 @@ nav .wrap {
   background: linear-gradient(to right, rgba(13,27,42,0.2), transparent);
 }
 
+/* Data-driven KPI visual panel (used when no screenshots are available yet) */
+.project-visuals.kpi-panel {
+  padding: 28px; display: flex; flex-direction: column; justify-content: center;
+  background: radial-gradient(ellipse at 20% 0%, rgba(14,154,167,0.22) 0%, transparent 55%), var(--navy);
+}
+.kpi-panel-label {
+  font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--teal);
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.kpi-panel-label::before { content: '◆'; font-size: 8px; }
+.kpi-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+.kpi-tile {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 10px; padding: 14px 16px;
+}
+.kpi-tile-val { font-size: 20px; font-weight: 800; color: #fff; letter-spacing: -0.01em; font-family: var(--mono); }
+.kpi-tile-lbl { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.05em; }
+.kpi-pages { display: flex; flex-wrap: wrap; gap: 6px; }
+.kpi-page-chip {
+  font-size: 11.5px; font-weight: 600; color: rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  padding: 5px 10px; border-radius: 6px;
+}
+
 .project-content { padding: 36px 40px; display: flex; flex-direction: column; justify-content: center; }
 .project-num {
   font-family: var(--mono); font-size: 11px; font-weight: 500;
@@ -301,6 +326,7 @@ nav .wrap {
   letter-spacing: 0.01em;
 }
 .project-tag.accent { background: rgba(14,154,167,0.08); color: var(--teal); border-color: rgba(14,154,167,0.2); }
+.project-tag.gold { background: rgba(244,164,53,0.1); color: #b5741f; border-color: rgba(244,164,53,0.3); }
 
 /* Alternating layout */
 .project-card:nth-child(even) .project-card-inner {
@@ -574,7 +600,7 @@ footer span { color: rgba(14,154,167,0.7); }
         </p>
         <div class="hero-stats">
           <div>
-            <div class="hero-stat-val">6<em>+</em></div>
+            <div class="hero-stat-val">7<em>+</em></div>
             <div class="hero-stat-label">Projects Delivered</div>
           </div>
           <div>
@@ -609,10 +635,58 @@ footer span { color: rgba(14,154,167,0.7); }
     <div class="section-header fade-up">
       <div class="section-eyebrow">Case Studies</div>
       <h2 class="section-title">Selected Work</h2>
-      <p class="section-subtitle">Six Power BI projects spanning HR analytics, banking, financial forecasting, disaster mapping, survey analysis, and customer behavior.</p>
+      <p class="section-subtitle">Seven Power BI projects spanning supply chain analytics, HR, banking, financial forecasting, disaster mapping, survey analysis, and customer behavior.</p>
     </div>
 
     <div class="projects-grid">
+
+      <!-- 0 (NEW, FIRST): Samsung Supply Chain -->
+      <div class="project-card fade-up">
+        <div class="project-card-inner">
+          <div class="project-visuals kpi-panel">
+            <div class="kpi-panel-label">Samsung Supply Chain Model</div>
+            <div class="kpi-tiles">
+              <div class="kpi-tile">
+                <div class="kpi-tile-val">8,500</div>
+                <div class="kpi-tile-lbl">Sales Transactions</div>
+              </div>
+              <div class="kpi-tile">
+                <div class="kpi-tile-val">7,500</div>
+                <div class="kpi-tile-lbl">Shipments Tracked</div>
+              </div>
+              <div class="kpi-tile">
+                <div class="kpi-tile-val">4,500</div>
+                <div class="kpi-tile-lbl">Production Batches</div>
+              </div>
+              <div class="kpi-tile">
+                <div class="kpi-tile-val">26</div>
+                <div class="kpi-tile-lbl">Custom DAX Measures</div>
+              </div>
+            </div>
+            <div class="kpi-pages">
+              <span class="kpi-page-chip">Home</span>
+              <span class="kpi-page-chip">Overview</span>
+              <span class="kpi-page-chip">Supplier</span>
+              <span class="kpi-page-chip">Inventory</span>
+              <span class="kpi-page-chip">Shipment</span>
+              <span class="kpi-page-chip">Customer</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-num">01 — Supply Chain Analytics</div>
+            <h3 class="project-title">Samsung Supply Chain & Procurement Analysis</h3>
+            <div class="project-stat">10-table star schema · 6 report pages · 26 DAX measures</div>
+            <p class="project-desc">End-to-end Power BI model covering the full Samsung product supply chain — procurement, production quality, inventory health, shipment reliability, and sales profitability — built on a star schema of 4 fact tables and 6 dimensions. Custom measures calculate turnover rate, days of inventory, perfect order %, delivered %, YoY revenue growth, and discount impact using time-intelligence and multi-condition CALCULATE logic.</p>
+            <div class="project-tags">
+              <span class="project-tag accent">Power BI</span>
+              <span class="project-tag accent">DAX</span>
+              <span class="project-tag">Star Schema</span>
+              <span class="project-tag">Time Intelligence</span>
+              <span class="project-tag gold">Supply Chain</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- 1: HR -->
       <div class="project-card fade-up">
@@ -626,7 +700,7 @@ footer span { color: rgba(14,154,167,0.7); }
             <div class="project-vis-overlay"></div>
           </div>
           <div class="project-content">
-            <div class="project-num">01 — Human Resources</div>
+            <div class="project-num">02 — Human Resources</div>
             <h3 class="project-title">Human Resources Analysis</h3>
             <div class="project-stat">3,500+ employee records · 3 pages</div>
             <p class="project-desc">Workforce dashboard built around a dynamic measure-switcher (disconnected parameter table) letting KPI cards toggle between total and average views of salary, count, and tenure.</p>
@@ -652,7 +726,7 @@ footer span { color: rgba(14,154,167,0.7); }
             <div class="project-vis-overlay"></div>
           </div>
           <div class="project-content">
-            <div class="project-num">02 — Banking Analytics</div>
+            <div class="project-num">03 — Banking Analytics</div>
             <h3 class="project-title">Bank of America Customer Analysis</h3>
             <div class="project-stat">~4,000 customers · 4 report pages</div>
             <p class="project-desc">Customer segmentation dashboard across geography, demographics, and account balances. Includes a US state map, age/balance histograms, and demographic clustering.</p>
@@ -679,7 +753,7 @@ footer span { color: rgba(14,154,167,0.7); }
             <div class="project-vis-overlay"></div>
           </div>
           <div class="project-content">
-            <div class="project-num">03 — Financial Reporting</div>
+            <div class="project-num">04 — Financial Reporting</div>
             <h3 class="project-title">Financial Performance & Forecasting</h3>
             <div class="project-stat">$118M+ in sales · 5 countries · 4 pages</div>
             <p class="project-desc">Financial report combining historical sales, margin, and COGS analysis with a forward-looking forecast band. Includes custom tooltips and geographic bubble mapping.</p>
@@ -706,7 +780,7 @@ footer span { color: rgba(14,154,167,0.7); }
             <div class="project-vis-overlay"></div>
           </div>
           <div class="project-content">
-            <div class="project-num">04 — Geospatial Analytics</div>
+            <div class="project-num">05 — Geospatial Analytics</div>
             <h3 class="project-title">US Natural Disasters Analysis</h3>
             <div class="project-stat">337 deaths · $301B+ losses tracked · 50 states</div>
             <p class="project-desc">2017 US natural disaster report analyzing hurricanes, wildfires, floods, drought, and freeze events. Includes custom image-based chiclet slicer for filtering by disaster type.</p>
@@ -730,7 +804,7 @@ footer span { color: rgba(14,154,167,0.7); }
             <div class="project-vis-overlay"></div>
           </div>
           <div class="project-content">
-            <div class="project-num">05 — Survey Analytics</div>
+            <div class="project-num">06 — Survey Analytics</div>
             <h3 class="project-title">Productivity Survey Analysis</h3>
             <div class="project-stat">1,223 survey respondents · age-group filtered</div>
             <p class="project-desc">Survey-response dashboard analyzing workplace productivity data from 1,223 respondents. Breaks down self-reported blockers including distractions, interruptions, and time management issues.</p>
@@ -756,7 +830,7 @@ footer span { color: rgba(14,154,167,0.7); }
             <div class="project-vis-overlay"></div>
           </div>
           <div class="project-content">
-            <div class="project-num">06 — Customer Analytics</div>
+            <div class="project-num">07 — Customer Analytics</div>
             <h3 class="project-title">Customer Shopping Behavior Analysis</h3>
             <div class="project-stat">3,900 transactions · Multi-dimensional insights</div>
             <p class="project-desc">End-to-end analytics project analyzing customer shopping behavior across demographics and spending patterns. Data cleaning with Python (pandas), SQL analysis in PostgreSQL, and Power BI visualization.</p>
