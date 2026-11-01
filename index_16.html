@@ -444,7 +444,7 @@ textarea.input { min-height: 140px; resize: vertical; }
     </div>
 
     <ul class="stats" aria-label="Key figures">
-      <li class="stat"><div class="stat-val">8</div><div class="stat-lbl">Portfolio projects</div></li>
+      <li class="stat"><div class="stat-val">9</div><div class="stat-lbl">Portfolio projects</div></li>
       <li class="stat"><div class="stat-val">1 yr</div><div class="stat-lbl">Banking BI experience</div></li>
       <li class="stat"><div class="stat-val">500K+</div><div class="stat-lbl">Daily transactions modeled</div></li>
       <li class="stat"><div class="stat-val">8</div><div class="stat-lbl">Certifications</div></li>
@@ -459,7 +459,7 @@ textarea.input { min-height: 140px; resize: vertical; }
       <p class="section-num">01 / Work</p>
       <div>
         <h2 class="section-title" id="work-title">Selected case studies</h2>
-        <p class="section-lead">Eight Power BI projects covering insurance risk, supply chain, HR, banking, financial forecasting, disaster mapping, survey analysis and customer behavior. Open any project for the full write-up and screenshots.</p>
+        <p class="section-lead">Nine projects: eight Power BI dashboards covering insurance risk, supply chain, HR, banking, financial forecasting, disaster mapping, survey analysis and customer behavior, plus a PostgreSQL data warehouse. Open any project for the full write-up and screenshots.</p>
       </div>
     </div>
 
@@ -631,6 +631,26 @@ textarea.input { min-height: 140px; resize: vertical; }
           <div class="card-foot">
             <span class="card-tools">Python · PostgreSQL · Power BI</span>
             <button class="card-open link-arrow" type="button" data-case="case-8">Read case study<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+          </div>
+        </div>
+      </li>
+
+      <!-- 09 -->
+      <li class="card reveal">
+        <div class="card-media">
+          <img src="screenshots/dwh-01-architecture.png" alt="Medallion architecture diagram: Bronze, Silver and Gold layers" loading="lazy" decoding="async">
+          <span class="card-count">4 diagrams</span>
+        </div>
+        <div class="card-body">
+          <p class="label card-kicker"><span class="num">09</span><span>Data Engineering</span></p>
+          <h3 class="card-title">PostgreSQL Data Warehouse</h3>
+          <p class="card-summary">Raw CRM and ERP files turned into a clean star schema with a Medallion pipeline.</p>
+          <div class="metrics">
+            <div><div class="metric-val">60,398</div><div class="metric-lbl">Sales rows</div></div>
+          </div>
+          <div class="card-foot">
+            <span class="card-tools">PostgreSQL · PL/pgSQL · ETL</span>
+            <button class="card-open link-arrow" type="button" data-case="case-9">Read case study<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
           </div>
         </div>
       </li>
@@ -871,6 +891,38 @@ textarea.input { min-height: 140px; resize: vertical; }
       <figure><a href="screenshots/cb_3.png" target="_blank" rel="noopener"><img src="screenshots/cb_3.png" alt="Revenue and sales insights by age group" loading="lazy"></a><figcaption>Revenue and sales by age group</figcaption></figure>
     </div>
     <div class="case-foot"><span>Click any screenshot to open it full size.</span><a class="link-arrow" href="#">View project<svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a></div>
+  </div>
+</dialog>
+
+<dialog class="case" id="case-9" aria-labelledby="case-9-title">
+  <div class="case-head">
+    <div><p class="label">09 · Data Engineering</p><h3 id="case-9-title">PostgreSQL Data Warehouse</h3></div>
+    <button class="icon-btn case-close" type="button" aria-label="Close case study"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+  </div>
+  <div class="case-scroll">
+    <div class="case-top">
+      <dl class="par">
+        <div><dt>Problem</dt><dd>Consolidate sales data from two source systems (CRM and ERP, six CSV files) into one warehouse that is clean, integrated and ready for reporting.</dd></div>
+        <div><dt>Approach</dt><dd>Medallion Architecture in PostgreSQL. Bronze loads the raw files with COPY inside stored procedures with load logging and error handling. Silver deduplicates, standardizes and repairs the data (invalid dates, wrong sales and prices, inconsistent codes). Gold exposes a star schema as views, backed by automated quality checks and a data catalog.</dd></div>
+        <div><dt>Result</dt><dd>A star schema with two dimensions and one fact table, ready for analytics and Power BI, with every cleaning rule verified by SQL test scripts.</dd></div>
+      </dl>
+      <div class="case-side">
+        <div class="case-metrics">
+          <div class="case-metric"><span>Fact rows</span><span>60,398</span></div>
+          <div class="case-metric"><span>Customers</span><span>18,484</span></div>
+          <div class="case-metric"><span>Products</span><span>295</span></div>
+          <div class="case-metric"><span>Source files</span><span>6</span></div>
+        </div>
+        <ul class="tags"><li class="tag">PostgreSQL</li><li class="tag">PL/pgSQL</li><li class="tag">ETL</li><li class="tag">Medallion Architecture</li><li class="tag">Star Schema</li><li class="tag">Data Quality</li></ul>
+      </div>
+    </div>
+    <div class="gallery">
+      <figure><a href="screenshots/dwh-01-architecture.png" target="_blank" rel="noopener"><img src="screenshots/dwh-01-architecture.png" alt="Data architecture with Bronze, Silver and Gold layers" loading="lazy"></a><figcaption>Data architecture: Bronze, Silver, Gold</figcaption></figure>
+      <figure><a href="screenshots/dwh-02-data-flow.png" target="_blank" rel="noopener"><img src="screenshots/dwh-02-data-flow.png" alt="Data flow from CRM and ERP sources to the Gold layer" loading="lazy"></a><figcaption>Data flow from source files to the Gold layer</figcaption></figure>
+      <figure><a href="screenshots/dwh-03-integration.png" target="_blank" rel="noopener"><img src="screenshots/dwh-03-integration.png" alt="How CRM and ERP tables are integrated" loading="lazy"></a><figcaption>Integration of CRM and ERP tables</figcaption></figure>
+      <figure><a href="screenshots/dwh-04-star-schema.png" target="_blank" rel="noopener"><img src="screenshots/dwh-04-star-schema.png" alt="Star schema with customer and product dimensions and a sales fact table" loading="lazy"></a><figcaption>Star schema: dim_customers, dim_products, fact_sales</figcaption></figure>
+    </div>
+    <div class="case-foot"><span>Click any screenshot to open it full size.</span><a class="link-arrow" href="https://github.com/ramaalmoujahed/Data-Engineering/tree/main/postgresql-data-warehouse" target="_blank" rel="noopener">View project<svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a></div>
   </div>
 </dialog>
 
